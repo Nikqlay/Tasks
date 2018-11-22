@@ -1,0 +1,19 @@
+Напишите функцию так, чтобы она преобразовывала строку в которой слова разделены помощью тире / подчеркивания в строку, которая записана по правилам camelCase.
+
+Например:
+Вход										Выход
+toCamelCase("the-stealth-warrior")			"theStealthWarrior"
+
+function toCamelCase($str) {
+    $chars = ['-','_'];
+    $to = str_replace($chars, '.', $str);
+    $arr = explode (".", $to);
+    foreach ($arr as $key => &$value)
+    {
+        if ($key !=0)
+            {
+            $value = ucwords ($value);
+            }
+    }
+    $arr = implode ("", $arr);
+}

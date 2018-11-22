@@ -1,0 +1,33 @@
+Выясните, какой платежной системе принадлежит карта по ее номеру. Если система неизвестна, то вернуть Unknow.
+
+AMEX: номер начинает с 34 или 37 и его длина 15 цифр
+Discover: номер начинает с 6011 и его длина 16 цифр
+Mastercard: номер начинает с 51, 52, 53, 54 или 55 и его длина 16 цифр
+VISA: номер начинает с 4 и его длина 13 или 16 цифр
+Например:
+Вход					Выход
+4111111111111111		"VISA"
+
+<?php
+ 
+function getIssuer($number){
+$s = strlen($number);
+$prefix1 = substr($number, 0, 1);
+$prefix2 = substr($number, 0, 2);
+$prefix4 = substr($number, 0, 4); 
+    if  (($s == 15 && ($prefix2 == 34) || $prefix2 == 37)){
+        return('AMEX');
+    }
+    elseif ($s==16 && $prefix4 == 6011){
+        return('Discover');
+    }
+    elseif ($s==16 && $prefix2>=51 && $prefix2<=55){
+        return('Mastercard');
+    }
+    elseif (($s==16 || $s==13) && $prefix1 == 4){
+        return('VISA');
+    }   
+    else {
+        return('Unknown');
+    }
+}

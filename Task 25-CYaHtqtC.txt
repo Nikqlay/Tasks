@@ -1,0 +1,29 @@
+Переместите первую букву в каждом слове в конец и добавьте 'ay'.
+
+Например:
+Вход					Выход
+Pig latin is cool	igPay atinlay siay oolcay
+
+<?php
+$s = ('Pig latin is cool');
+$arr = explode(" ", $s);
+$prefix = $arr;
+$postfix = $arr;
+$result = [];
+array_walk($prefix, function(&$x) {$x = ($x[0].'ay'); } );
+array_walk($postfix, function(&$x) {$x=substr($x, 1); } );
+	foreach($postfix as $key=>$value) { 
+        $result[] = $value.$prefix [$key];
+    }   
+var_dump($result);
+
+from Artur
+<?php
+$s = ('Pig latin is cool');
+$arr = explode(" ", $s);
+ 
+foreach ($arr as &$item) {
+    $item = substr($item, 1) . $item[0] . 'ay';
+}
+ 
+var_dump($arr);

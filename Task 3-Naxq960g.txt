@@ -1,0 +1,8 @@
+
+<?php
+$s = '(new Node(1, new Node(2, new Node(3))))';
+$h = [ '(' , ')', 'new Node' ]; 
+$r = str_replace($h, '', $s);
+$r = str_replace(',', ' ->', $r).' -> null';
+var_dump($r);
+?>

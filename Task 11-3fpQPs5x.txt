@@ -1,0 +1,49 @@
+Вы, вероятно, знаете, как в вконтакте устроена система лайков картинок, постов и других вещей. Вам нужно организовать текст, который будет отображаться с таким элементом.
+
+Функция принимает массив, который содержит имена людей, лайкнувших что-либо. Она должна возвращать сгенерированную строку, как в примерах ниже:
+
+Например:
+Вход	Выход
+[]
+
+"no one likes this" ["Peter"]
+
+"Peter likes this" ["Jacob", "Alex"]
+
+"Jacob and Alex like this" ["Max", "John", "Mark"]
+
+"Max, John and Mark like this" ["Alex", "Jacob", "Mark", "Max"]
+
+"Alex, Jacob and 2 others like this"
+
+Для 4 и более людей отображается только первые 2 имени, остальные отображаются цифрой лайкнувших людей, за исключением первых двух.
+
+<?php
+$arr = ["Alex", "Jacob", "Mark", "Max"];
+$i = count ($arr);
+
+print_r ($i);
+if (empty ($arr)) {
+    $result = "no one likes this";
+}
+elseif ($i==1) {
+    $result = implode($arr)." likes this";
+}
+elseif ($i==2) {
+    $result = implode(" and ", $arr)." likes this";
+}
+elseif ($i==3) {
+    
+	$result = implode(" and ",$arr)." likes this";
+	$result = preg_replace("/ and /", ", ", $result, 1);
+}
+elseif ($i>3) {
+    $i=$i-2;
+	$arr=array_slice($arr,0,2);
+	$result = implode(", ",$arr)." and ".$i." others likes this";
+}
+
+
+var_dump($result);
+
+?>
